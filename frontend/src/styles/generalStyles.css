@@ -1,0 +1,10 @@
+.Fondo{
+    background-color: white;
+    margin-top: 5%;
+    padding-left: 1rem;
+    border-radius: 15px;
+    opacity: 50%;
+    box-shadow: 1px 1px gray;
+    text-align: center;
+}
+

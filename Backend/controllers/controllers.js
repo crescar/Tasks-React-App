@@ -12,13 +12,12 @@ control.verifyDatosRegistro = (req, res, next) =>{
     }else{
         conexion.query('SELECT * FROM users WHERE Email = ?',[Email],(error, results)=>{
             if (error) {
-                console.log(`ocurrio el siguiente error ${error}`)
-                return res.sendStatus(400)
+                return res.json({estado: '505'})
             }else{
                 if (results.length == 0) {
                     return next()
                 }else{
-                    return res.send('correo en uso')
+                    return res.json({acceso: false, mensaje:'correo en uso'})
                 }
             }
         })
@@ -31,39 +30,35 @@ control.register = (req, res) =>{
     conexion.query('INSERT INTO users(Name, Email, Pass) VALUES (?,?,?)', [Name, Email, Pass],
     (error)=>{
         if (error) {
-            console.log(`Ocurrio el siguiente Error ${error}`)
+            return res.json({estado: '505'})
         }else{
-            console.log('registro exitoso')
-            res.sendStatus(200)
+            return res.json({acceso: true})
         }
     })
 }
 
 
 control.login = (req, res) => {
-    const {User, Pass} = req.body;
-    if (User == "" || Pass =="") {
-        res.send('Faltan rellenar campos')
-    }else{
-        conexion.query('SELECT * FROM users WHERE Email = ?',[User], async (error,results)=>{
-            if (error) {
-                console.log(`Ocurrrio el siguiente error ${error}`)
+    const {Email, Pass} = req.body;
+    
+    conexion.query('SELECT * FROM users WHERE Email = ? && Pass',[Email], async (error,results)=>{
+        if (error) {
+            return res.json({estado: '505'})
+        }else{
+            if (results[0].Pass == Pass) {
+                let ID = results[0].ID
+                const token = await jwt.sign({ID}, secretKey, (err, token)=>{
+                    if(err){
+                        return res.json({estado: '505'})
+                    }else{
+                        return res.json({token, acceso:true})
+                    }
+                })
             }else{
-                if (results[0].Pass === Pass) {
-                    let ID = results[0].ID
-                    const token = await jwt.sign({ID}, secretKey, (err, token)=>{
-                        if(err){
-                            console.log(err)
-                        }else{
-                            res.json({token})
-                        }
-                    })
-                }else{
-                    res.send('Usuario y/o clave incorrectas')
-                }
+               return res.json({acceso: false, mensaje:'correo y/o clave invalidos'})
             }
-        })
-    }
+        }
+    })
     
 
 }
