@@ -37,6 +37,16 @@ control.register = (req, res) =>{
     })
 }
 
+control.validateToken = async (req, res, next) =>{
+    const {token} = req.body
+    const checktoken = await jwt.verify(token, secretKey)
+    if(checktoken){
+        console.log(checktoken)
+        res.json({accseo:'autorizado'})
+    }else{
+        res.json({acceso:false, mensaje:'no estas autorizado'})
+    }
+}
 
 control.login = (req, res) => {
     const {Email, Pass} = req.body;

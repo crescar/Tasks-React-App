@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/navbar';
 import Registerfom from '../components/register';
 
@@ -24,7 +25,7 @@ const HomeRegi = ()=>{
         }
     }
 
-    
+    const navigate = useNavigate()
 
     const handleRegister = async ()=>{
         if (Pass === RPass) {
@@ -34,7 +35,7 @@ const HomeRegi = ()=>{
             let responts = await fetch(URL,options)
             const results = await responts.json()
             if (results.acceso) {
-                alert('registro exitoso')
+                navigate('/Rcomplet')
             }else{
                 alert(results.mensaje)
             }

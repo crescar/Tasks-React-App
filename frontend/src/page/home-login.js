@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/navbar';
 import LogiForm from '../components/login';
 
@@ -7,20 +8,14 @@ const HomeLogin = ()=>{
 
     const [Email, setEmail] = useState('')
     const [Pass, setPass] = useState('')
-    const [token, setToken] = useState(false)
-    
-   useEffect(()=>{
+    const [token, setToken] = useState(localStorage.getItem('token'))
+    const navigate = useNavigate()
 
-        let token = localStorage.getItem('token')
-        if(token){
-            console.log(true)
-            setToken(true)
-        }else{
-            console.log(false)
-            setToken(false)
+    useEffect(()=>{
+        if (token) {
+            navigate('/dashboard')
         }
-
-   })
+    })
 
     const handleDatos = (e)=>{
         if (e.target.name === "Email") {
@@ -41,41 +36,28 @@ const HomeLogin = ()=>{
             const results = await responts.json()
             if (results.acceso) {
                 localStorage.setItem('token', results.token)
+                navigate('/dashboard')
+
             }else{
                 alert(results.mensaje)
             }
         }
     }
 
-    const handleLogout = ()=>{
-        localStorage.removeItem('token')
-    }
 
-
-    if(token){
-        return(
-            <>
+    return(
+        <>
             <div className='container'>
                 <NavBar/>
-                <a onClick={handleLogout}>Logout</a>
+                <LogiForm
+                handleDatos={handleDatos}
+                handleLogin = {handleLogin}
+                Email = {Email}
+                Pass = {Pass}
+                />
             </div>
         </>
-        )
-    }else{
-        return(
-            <>
-                <div className='container'>
-                    <NavBar/>
-                    <LogiForm
-                    handleDatos={handleDatos}
-                    handleLogin = {handleLogin}
-                    Email = {Email}
-                    Pass = {Pass}
-                    />
-                </div>
-            </>
-        )
-    }
+    )
 }
 
 export default HomeLogin
