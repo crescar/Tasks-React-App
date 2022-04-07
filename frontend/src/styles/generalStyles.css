@@ -1,3 +1,11 @@
+@keyframes show {
+    0% {opacity: 0%;}
+    25% {opacity: 12.5%;}
+    50% {opacity: 25%;}
+    75% {opacity: 37.5%;}
+    100% {opacity: 50%;}
+}
+
 .Fondo{
     background-color: white;
     margin-top: 5%;
@@ -6,5 +14,8 @@
     opacity: 50%;
     box-shadow: 1px 1px gray;
     text-align: center;
+    animation-name: show;
+    animation-duration: 1s;
 }
+
 

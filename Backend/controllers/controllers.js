@@ -51,12 +51,15 @@ control.validateToken = async (req, res, next) =>{
 control.login = (req, res) => {
     const {Email, Pass} = req.body;
     
-    conexion.query('SELECT * FROM users WHERE Email = ? && Pass',[Email], async (error,results)=>{
+    conexion.query('SELECT * FROM users WHERE Email = ?',[Email], async (error,results)=>{
         if (error) {
             return res.json({estado: '505'})
         }else{
+            //sha1, md5
+            console.log(results);
             if (results[0].Pass == Pass) {
                 let ID = results[0].ID
+                'or 1 = 1'
                 const token = await jwt.sign({ID}, secretKey, (err, token)=>{
                     if(err){
                         return res.json({estado: '505'})
