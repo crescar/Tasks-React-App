@@ -12,12 +12,12 @@ const LogiForm = (props)=>{
                             <div className="input-field col s12">
                                 <input id="Email" type="email" className="validate" 
                                 name="Email" onChange={handleDatos} value={Email}/>
-                                <label for="Email">Email</label>
+                                <label htmlFor="Email">Email</label>
                             </div>
                             <div className="input-field col s12">
                                 <input id="Pass" type="password" className="validate"
                                  name="Pass" onChange={handleDatos} value={Pass}/>
-                                <label for="Pass">Password</label>
+                                <label htmlFor="Pass">Password</label>
                             </div>
                             <a className="waves-effect waves-light btn-large" onClick={handleLogin} >Login</a>
                         </div>

@@ -12,22 +12,22 @@ const Registerfom = ({handleDatos, handleRegister, Name, Email, Pass, RPass})=>{
                             <div className="input-field col s12">
                                 <input id="name" type="text" className="validate" name="Name"
                                 onChange={handleDatos} value={Name}/>
-                                <label for="name" >Full Name</label>
+                                <label htmlFor="name" >Full Name</label>
                             </div>
                             <div className="input-field col s12">
                                 <input id="Email" type="email" className="validate" name="Email"
                                 onChange={handleDatos} value={Email}/>
-                                <label for="Email">Email</label>
+                                <label htmlFor="Email">Email</label>
                             </div>
                             <div className="input-field col s12">
                                 <input id="Pass" type="password" className="validate" name="Pass"
                                 onChange={handleDatos} value={Pass}/>
-                                <label for="Pass">Password</label>
+                                <label htmlFor="Pass">Password</label>
                             </div>
                             <div className="input-field col s12">
                                 <input id="RPass" type="password" className="validate" name="RPass"
                                 onChange={handleDatos} value={RPass}/>
-                                <label for="RPass">Repect Password</label>
+                                <label htmlFor="RPass">Repect Password</label>
                             </div>
                             <a className="waves-effect waves-light btn-large" onClick={handleRegister} >Register</a>
                         </div>
