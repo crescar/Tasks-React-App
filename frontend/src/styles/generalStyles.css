@@ -18,4 +18,9 @@
     animation-duration: 1s;
 }
 
+.cardEfect{
+    margin-top: 5%;
+    animation-name: show;
+    animation-duration: 1s;
+}
 
