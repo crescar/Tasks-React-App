@@ -16,10 +16,12 @@ router.post('/register', registerController.verifyData ,registerController.Regis
 //--------- Tasks---------------------------------
 
 router.post('/getTasks', taksController.getTasks )
-// router.get('getTask', )
-// router.post('/createdTask', )
-// router.put('/updatedtask', )
-// router.delete('/deleteTask', )
+router.post('/createTaks', taksController.saveTasks )
+router.delete('/deleteTask', taksController.deleteTaks )
+router.post('/getTask', taksController.getTask)
+router.put('/updateTaks', taksController.updateTask)
+
+
 
 
 

@@ -33,7 +33,7 @@ const HomeRegi = ()=>{
             let URL = "http://localhost:3100/register"
             let options ={method: "POST",headers: {'Content-Type': 'application/json;charset=utf-8'} ,body: JSON.stringify(Datos)}
             let responts = await fetch(URL,options)
-            const results = await responts.json()
+            let results = await responts.json()
             if (results.acceso) {
                 navigate('/Rcomplet')
             }else{

@@ -7,6 +7,7 @@ import HomeRegi from './page/home-register';
 import CompletRegister from './page/completrgister';
 import Dashboard from './page/dashboard';
 import NewTask from './page/newTask';
+import EditTask from './page/edittask';
 
 
 import './App.css';
@@ -22,6 +23,7 @@ class App extends React.Component{
           <Route path='/Rcomplet' element={<CompletRegister/>} />
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/newtask' element={<NewTask/>} />
+          <Route path='/editTask/:IDTask' element={<EditTask/>} />
         </Routes>
       </BrowserRouter>
     )
